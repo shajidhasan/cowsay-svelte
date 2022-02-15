@@ -10,13 +10,11 @@
   const LINE_HEIGHT = 1.15;
   const FONT_SIZE = 10;
   const FONT_FACE = "IBM Plex Mono";
-  let canvas_font = `bold ${FONT_SIZE}px "${FONT_FACE}"`;
-  console.log(canvas_font);
+  let canvasFont = `500 ${FONT_SIZE}px "${FONT_FACE}"`;
 
   const resetCanvas = () => {
     canvas.height = HEIGHT;
     canvas.width = WIDTH;
-    context.font = canvas_font;
   };
 
   export let canvas: HTMLCanvasElement;
@@ -38,6 +36,8 @@
     let longestLine = lines.reduce(function (a, b) {
       return a.length > b.length ? a : b;
     });
+
+    context.font = canvasFont;
 
     let textWidth = context.measureText(longestLine).width;
     let scaleFactor = (canvas.width - PADDING * 2) / textWidth;
@@ -62,7 +62,7 @@
     }
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    context.font = canvas_font;
+    context.font = canvasFont;
     context.scale(scaleFactor, scaleFactor);
 
     if (colorScheme.text.type === "solid") {

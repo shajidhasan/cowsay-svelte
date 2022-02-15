@@ -22,7 +22,9 @@
   };
 </script>
 
-<h1 class="font-mono text-4xl text-gray-600 mb-4 md:mb-8">{"<cowsay>"}</h1>
+<h1 class="font-mono text-4xl text-gray-600 mb-4 md:mb-8 font-medium">
+  {"<cowsay>"}
+</h1>
 
 <div
   class="w-full flex flex-col md:flex-row space-y-4 justify-center items-center md:space-x-8 md:space-y-0 text-gray-900"
