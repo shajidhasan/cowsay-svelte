@@ -13,13 +13,13 @@
   let context: CanvasRenderingContext2D;
 
   let text: string, cow: Cow, colorScheme: ColorScheme;
-  let _text: string, _cow: Cow, _colorScheme: ColorScheme;
+  // let _text: string, _cow: Cow, _colorScheme: ColorScheme;
 
-  const generate = () => {
-    text = _text;
-    cow = _cow;
-    colorScheme = _colorScheme;
-  };
+  // const generate = () => {
+  //   text = _text;
+  //   cow = _cow;
+  //   colorScheme = _colorScheme;
+  // };
 </script>
 
 <h1 class="font-mono text-4xl text-gray-600 mb-4 md:mb-8 font-medium">
@@ -30,10 +30,10 @@
   class="w-full flex flex-col md:flex-row space-y-4 justify-center items-center md:space-x-8 md:space-y-0 text-gray-900"
 >
   <div class="w-full p-4 md:p-0 md:w-80 lg:w-96 space-y-3">
-    <TextInput bind:value={_text} />
-    <CowPicker bind:selectedCow={_cow} />
-    <ColorSchemePicker bind:selectedScheme={_colorScheme} />
-    <GenerateButton on:generate={generate} />
+    <TextInput bind:value={text} />
+    <CowPicker bind:selectedCow={cow} />
+    <ColorSchemePicker bind:selectedScheme={colorScheme} />
+    <!-- <GenerateButton on:generate={generate} /> -->
   </div>
   <div class="w-full p-4 md:p-0 md:w-80 lg:w-96 space-y-3">
     <div class="flex flex-row justify-end space-x-2">
