@@ -3,6 +3,7 @@
   import { say } from "cowsay2";
   import { COW_FILES, COW_TEXT_WRAP } from "../data";
   import type { ColorScheme, Cow } from "../data";
+  import ColorSchemePicker from "./ColorSchemePicker.svelte";
 
   const WIDTH = 1000;
   const HEIGHT = 1000;
@@ -25,7 +26,7 @@
   export let colorScheme: ColorScheme;
   export let cow: Cow;
 
-  const generate = () => {
+  const generate = (text: string, colorScheme: ColorScheme, cow: Cow) => {
     if (!text || !colorScheme || !cow) return;
     resetCanvas();
     let cowSay: string = say(text, {
@@ -93,12 +94,7 @@
     context = canvas.getContext("2d");
   });
 
-  $: {
-    console.log(text);
-    console.log(colorScheme);
-    console.log(cow);
-    generate();
-  }
+  $: generate(text, colorScheme, cow);
 </script>
 
 <canvas class="rounded-lg shadow bg-white w-full" bind:this={canvas} />
