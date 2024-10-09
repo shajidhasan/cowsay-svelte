@@ -1,15 +1,12 @@
 <script lang="ts">
-  import {
-    Menu,
-    MenuButton,
-    MenuItems,
-    MenuItem,
-    Transition,
-  } from "@rgossiaux/svelte-headlessui";
+  import { DropdownMenu } from "bits-ui";
+
   import { say } from "cowsay2";
   import { COW_FILES, COW_TEXT_WRAP } from "../data";
   import type { Cow } from "../data";
   import { onMount } from "svelte";
+  import { Copy, Image, ChevronDown, Text, Code } from "lucide-svelte";
+  import { flyAndScale } from "../utils";
 
   export let canvas: HTMLCanvasElement, text: string, cow: Cow;
 
@@ -19,7 +16,7 @@
     let cowSay = say(text, { W: COW_TEXT_WRAP, cow: COW_FILES[cow] });
     try {
       await navigator.clipboard.writeText(
-        markdown ? "```\n" + cowSay + "```\n" : cowSay
+        markdown ? "```\n" + cowSay + "```\n" : cowSay,
       );
     } catch (exception) {
       console.log("Could not copy! You must be using an old browser. Sorry!");
@@ -30,7 +27,7 @@
     canvas.toBlob(async (blob) => {
       try {
         await navigator.clipboard.write([
-          new ClipboardItem({ "image/png": blob }),
+          new ClipboardItem({ "image/png": blob as Blob }),
         ]);
       } catch (exception) {
         console.log(exception);
@@ -44,24 +41,57 @@
   });
 </script>
 
-<Menu class="relative inline-block text-left">
+<DropdownMenu.Root>
+  <DropdownMenu.Trigger
+    class="text-white px-4 py-2 gap-2 rounded-md inline-flex items-center text-sm font-medium shadow-md bg-black opacity-50 hover:opacity-60 focus:outline focus:outline-1 focus:outline-red-500"
+  >
+    <Copy class="size-4" />
+    <span>Copy</span>
+    <ChevronDown class="size-4" />
+  </DropdownMenu.Trigger>
+
+  <DropdownMenu.Content
+    transition={flyAndScale}
+    class="w-56 mt-1 origin-top-right bg-white divide-y divide-gray-100 p-1 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+  >
+    <DropdownMenu.Item
+      class="hover:bg-rose-500 hover:text-white text-gray-900 group flex rounded-md items-center w-full px-2 py-2 text-sm"
+      on:click={copyImage}
+    >
+      <Image
+        class="size-5 mr-2 group-hover:bg-rose-500 group-hover:text-white text-gray-900"
+      />
+      <span>Image</span>
+    </DropdownMenu.Item>
+
+    <DropdownMenu.Item
+      class="hover:bg-rose-500 hover:text-white text-gray-900 group flex rounded-md items-center w-full px-2 py-2 text-sm"
+      on:click={() => copyText()}
+    >
+      <Text
+        class="size-5 mr-2 group-hover:bg-rose-500 group-hover:text-white text-gray-900"
+      />
+      <span>Text</span>
+    </DropdownMenu.Item>
+
+    <DropdownMenu.Item
+      class="hover:bg-rose-500 hover:text-white text-gray-900 group flex rounded-md items-center w-full px-2 py-2 text-sm"
+      on:click={() => copyText(true)}
+    >
+      <Code
+        class="size-5 mr-2 group-hover:bg-rose-500 group-hover:text-white text-gray-900"
+      />
+      <span>Markdown</span>
+    </DropdownMenu.Item>
+  </DropdownMenu.Content>
+</DropdownMenu.Root>
+
+<!-- <Menu class="relative inline-block text-left">
   <div>
     <MenuButton
       class="text-white px-4 py-2 rounded-md inline-flex items-center text-sm font-medium shadow-md bg-black opacity-50 hover:opacity-60 focus:outline focus:outline-1 focus:outline-red-500"
     >
       <span>Copy</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="ml-1 h-5 w-5"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-          clip-rule="evenodd"
-        />
-      </svg>
     </MenuButton>
   </div>
   <Transition
@@ -155,4 +185,4 @@
       </MenuItem>
     </MenuItems>
   </Transition>
-</Menu>
+</Menu> -->

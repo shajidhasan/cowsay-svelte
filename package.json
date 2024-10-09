@@ -10,8 +10,8 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
-    "@rgossiaux/svelte-headlessui": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.1.2",
+    "@tailwindcss/forms": "^0.5.9",
     "@tsconfig/svelte": "^5.0.4",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
@@ -22,13 +22,14 @@
     "tailwindcss": "^3.4.13",
     "tslib": "^2.7.0",
     "typescript": "^5.6.2",
-    "vite": "^5.4.8",
-    "@tailwindcss/forms": "^0.5.9"
+    "vite": "^5.4.8"
   },
   "dependencies": {
+    "bits-ui": "^0.21.16",
     "copy-to-clipboard": "^3.3.3",
     "cowsay2": "^2.0.4",
     "file-saver": "^2.0.5",
+    "lucide-svelte": "^0.449.0",
     "pattern.css": "^1.0.0",
     "svelte-spa-router": "^4.0.1"
   }

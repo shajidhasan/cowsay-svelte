@@ -1,46 +1,43 @@
 <script lang="ts">
-  import { RadioGroup, RadioGroupOption } from "@rgossiaux/svelte-headlessui";
+  import { RadioGroup } from "bits-ui";
 
   import { COLOR_SCHEMES } from "../data";
   import type { ColorScheme } from "../data";
 
-  export let selectedScheme: ColorScheme = null;
-  if (selectedScheme === null) {
-    selectedScheme = COLOR_SCHEMES[0];
+  export let colorScheme: ColorScheme = null;
+
+  if (colorScheme === null) {
+    colorScheme = COLOR_SCHEMES[0];
   }
 
-  const setSelected = (e: { detail: ColorScheme }) => {
-    selectedScheme = e.detail;
+  const onValueChange = (value: string) => {
+    colorScheme = COLOR_SCHEMES.find((scheme) => scheme.name === value);
   };
 </script>
 
 <div>
   <p class="text-gray-800 mb-1">Pick a color scheme</p>
 
-  <RadioGroup
-    value={selectedScheme}
-    on:change={setSelected}
+  <RadioGroup.Root
     class="flex flex-row flex-wrap gap-2"
+    value={colorScheme.name}
+    {onValueChange}
   >
-    {#each COLOR_SCHEMES as scheme, index (index)}
-      <RadioGroupOption
-        value={scheme}
-        let:active
-        let:checked
-        class={({ active, checked }) =>
-          `${active ? "outline outline-1 outline-rose-500" : ""} ${
-            checked ? "bg-rose-400" : "bg-white/10"
-          } rounded-lg shadow-md p-1`}
+    {#each COLOR_SCHEMES as scheme}
+      <RadioGroup.Item
+        class="hover:outline outline-1 outline-rose-500 data-[state=checked]:bg-rose-400 bg-white/10 rounded-lg shadow-md p-1"
+        value={scheme.name}
       >
         <div
-          class={"w-10 h-10 flex  items-center justify-center rounded-lg" +
+          title={scheme.label}
+          class={"w-10 h-10 flex items-center justify-center rounded-lg" +
             " " +
             scheme.background.cssClass}
-          class:border-red-200={scheme === selectedScheme}
+          class:border-red-200={scheme === colorScheme}
         >
           <div class={"w-5 h-5 rounded-lg" + " " + scheme.text.cssClass} />
         </div>
-      </RadioGroupOption>
+      </RadioGroup.Item>
     {/each}
-  </RadioGroup>
+  </RadioGroup.Root>
 </div>

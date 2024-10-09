@@ -42,6 +42,8 @@ export interface CowFill {
 export interface ColorScheme {
   background: CowFill;
   text: CowFill;
+  name: string;
+  label: string;
 }
 
 export const COLOR_SCHEMES: ColorScheme[] = [
@@ -55,7 +57,9 @@ export const COLOR_SCHEMES: ColorScheme[] = [
       type: 'solid',
       color: 'black',
       cssClass: 'bg-black'
-    }
+    },
+    name: 'black-on-white',
+    label: 'Black on white',
   },
   {
     background: {
@@ -67,7 +71,9 @@ export const COLOR_SCHEMES: ColorScheme[] = [
       type: 'solid',
       color: 'white',
       cssClass: 'bg-white'
-    }
+    },
+    name: 'white-on-black',
+    label: 'White on black',
   },
   {
     background: {
@@ -79,7 +85,9 @@ export const COLOR_SCHEMES: ColorScheme[] = [
       type: 'solid',
       color: '#16a34a',
       cssClass: 'bg-green-600'
-    }
+    },
+    name: 'green-on-black',
+    label: 'Green on black',
   },
   {
     background: {
@@ -91,7 +99,9 @@ export const COLOR_SCHEMES: ColorScheme[] = [
       type: 'solid',
       color: '#d97706',
       cssClass: 'bg-amber-600'
-    }
+    },
+    name: 'Amber on light orange',
+    label: 'amber-on-light-orange',
   },
   {
     background: {
@@ -106,7 +116,9 @@ export const COLOR_SCHEMES: ColorScheme[] = [
       type: 'solid',
       color: 'white',
       cssClass: 'bg-white'
-    }
+    },
+    name: 'white-on-indigo-purple',
+    label: 'White on indigo and purple gradient',
   },
   {
     background: {
@@ -121,6 +133,8 @@ export const COLOR_SCHEMES: ColorScheme[] = [
         to: '#ef4444'
       },
       cssClass: 'bg-gradient-to-br from-orange-50 to-red-500'
-    }
+    },
+    name: 'orange-red-on-black',
+    label: 'Orange and red gradient on black',
   }
 ]

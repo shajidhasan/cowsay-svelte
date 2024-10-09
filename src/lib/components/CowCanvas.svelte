@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { say } from "cowsay2";
-  import { ColorScheme, Cow, COW_FILES, COW_TEXT_WRAP } from "../data";
+  import { COW_FILES, COW_TEXT_WRAP } from "../data";
+  import type { ColorScheme, Cow } from "../data";
 
   const WIDTH = 1000;
   const HEIGHT = 1000;
@@ -54,7 +55,7 @@
         0,
         0,
         canvas.width,
-        canvas.height
+        canvas.height,
       );
       gradient.addColorStop(0, colorScheme.background.gradient.from);
       gradient.addColorStop(1, colorScheme.background.gradient.to);
@@ -72,7 +73,7 @@
         0,
         0,
         canvas.width / scaleFactor,
-        canvas.height / scaleFactor
+        canvas.height / scaleFactor,
       );
       gradient.addColorStop(0, colorScheme.text.gradient.from);
       gradient.addColorStop(1, colorScheme.text.gradient.to);
@@ -83,7 +84,7 @@
       context.fillText(
         lines[i],
         PADDING / scaleFactor,
-        PADDING / scaleFactor + FONT_SIZE * LINE_HEIGHT * i
+        PADDING / scaleFactor + FONT_SIZE * LINE_HEIGHT * i,
       );
     }
   };
