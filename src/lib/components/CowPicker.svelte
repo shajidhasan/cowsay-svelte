@@ -43,7 +43,7 @@
           let:isSelected
           value={cow_.value}
           label={cow_.label}
-          class="hover:text-rose-900 hover:bg-rose-100 text-gray-900 flex items-center cursor-default select-none relative py-2 pr-4"
+          class="data-[highlighted]:text-rose-900 data-[highlighted]:bg-rose-100 text-gray-900 flex items-center cursor-default select-none relative py-2 pr-4"
         >
           <Select.ItemIndicator asChild={false}>
             <Check class="size-5 mx-2" />

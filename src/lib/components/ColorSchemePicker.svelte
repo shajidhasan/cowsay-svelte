@@ -21,6 +21,7 @@
   <RadioGroup.Root
     class="flex flex-row flex-wrap gap-2"
     value={colorScheme.name}
+    orientation="horizontal"
     {onValueChange}
   >
     {#each COLOR_SCHEMES as scheme}
